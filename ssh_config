@@ -1,0 +1,3 @@
+StrictHostKeyChecking=no
+UserKnownHostsFile=/dev/null
+Include /etc/ssh/ssh_config.d/*.conf
