@@ -21,9 +21,10 @@ COPY ./src ./src
 RUN rm ./target/release/deps/sshuttle_rust*
 RUN cargo build --release
 
-FROM debian:bookworm
-RUN apt-get clean && apt-get --allow-unauthenticated update  --allow-insecure-repositories
-RUN apt-get --allow-unauthenticated install -y iptables ssh && rm -rf /var/lib/apt/lists/*
+FROM debian:bookworm-slim
+RUN apt-get clean \
+    && apt-get --allow-unauthenticated update  --allow-insecure-repositories \
+    && apt-get --allow-unauthenticated install -y iptables ssh && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /sshuttle_rust/target/release/sshuttle_rust /usr/local/bin/sshuttle_rust
 COPY ./ssh_config /etc/ssh/ssh_config
 CMD ["sshuttle_rust"]
