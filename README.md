@@ -59,3 +59,11 @@ In the future, if anybody wanted to write the code, we could:
 
 * Implement server side code, similar to the Python sshuttle.
 * Implement a UDP DNS proxy that forwards all DNS requests using TCP.
+
+## Container build 
+
+To build a container for sshuttle_rust use
+
+```bash
+docker build --platform linux/amd64 -t kramergroup/sshuttle_rust:latest .
+```
